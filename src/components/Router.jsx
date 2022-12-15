@@ -6,6 +6,7 @@ import Checkout from "../pages/Checkout";
 import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import Cart from "../pages/Cart";
+import Footer from "../components/Footer";
 import NavBar from "./NavBar";
 
 const Router = () => {
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
