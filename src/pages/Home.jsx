@@ -10,7 +10,7 @@ const Home = () => {
 
   const getProducts = async () => {
     try {
-      const res = await axiosGet("/products?limit=4");
+      const res = await axiosGet("/products?limit=8");
       await setProducts(res);
       await setLoader(false);
     } catch (err) {

@@ -8,6 +8,7 @@ import SignUp from "../pages/SignUp";
 import Cart from "../pages/Cart";
 import Footer from "../components/Footer";
 import NavBar from "./NavBar";
+import Login from "../pages/Login";
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<Cart />} />

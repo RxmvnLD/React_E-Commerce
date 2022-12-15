@@ -5,6 +5,8 @@ export const getToken = () => {
   const storedToken = window.localStorage.getItem("token");
   if (typeof storedToken === "string") {
     return storedToken;
+  } else {
+    return false;
   }
 };
 
