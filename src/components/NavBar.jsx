@@ -61,14 +61,22 @@ const NavBar = () => {
             </div>
           </div>
           <div className="flex flex-row items-center gap-3">
-            <div className="flex flex-row items-center gap-1">
-              <span className="cursor-pointer">Categorías</span>
-              <FiChevronDown />
-            </div>
-            <span className="cursor-pointer">Ofertas</span>
+            <Link to="/offers">
+              <div className="flex flex-row items-center gap-1">
+                <span className="cursor-pointer">Categorías</span>
+                <FiChevronDown />
+              </div>
+            </Link>
+            <Link to="/offers">
+              <span className="cursor-pointer">Ofertas</span>
+            </Link>
             <span className="cursor-pointer">Historial</span>
-            <span className="cursor-pointer">Supermercado</span>
-            <span className="cursor-pointer">Moda</span>
+            <Link to="/offers">
+              <span className="cursor-pointer">Supermercado</span>
+            </Link>
+            <Link to="/offers">
+              <span className="cursor-pointer">Moda</span>
+            </Link>
             <span className="cursor-pointer">Vender</span>
             <span className="cursor-pointer">Ayuda</span>
           </div>
