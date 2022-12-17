@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { VscClose } from "react-icons/vsc";
 import { BiMenu } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";

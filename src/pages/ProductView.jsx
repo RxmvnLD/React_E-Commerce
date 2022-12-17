@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { axiosGet } from "../helpers/axiosInstance";
 import Loader from "../components/Loader";
@@ -10,23 +10,49 @@ import {
 import { TbArrowBack } from "react-icons/tb";
 import { CiTrophy } from "react-icons/ci";
 import Button from "../components/Button";
+import CartContext from "../context/CartContext";
+import { TYPES } from "../actions/cart.actions";
 
 const ProductView = () => {
   const { id } = useParams();
   const [prod, setProd] = useState({}),
-    [isLoading, setIsLoading] = useState(true);
+    [isLoading, setIsLoading] = useState(true),
+    [quantity, setQuantity] = useState(1);
+  const { cartState, cartDispatch } = useContext(CartContext);
+
+  const getProd = async () => {
+    try {
+      const res = await axiosGet(`/products/${id}`);
+      setProd(res);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(err);
+    }
+  };
+
+  const handleChangeQuantity = (e) => {
+    setQuantity(e.target.value);
+    console.log(quantity);
+  };
+
+  const addToCart = (event) => {
+    event.preventDefault();
+    cartDispatch({
+      type: TYPES.ADD_TO_CART,
+      payload: {
+        cartID: Math.floor(Math.random() * 100),
+        prod,
+        quantity: quantity,
+      },
+    });
+    cartDispatch({
+      type: TYPES.UPDATE_AMOUNT,
+      payload: (prod.price - prod.price * 0.15) * quantity,
+    });
+    alert("Producto agregado exitosamente");
+  };
 
   useEffect(() => {
-    const getProd = async () => {
-      try {
-        const res = await axiosGet(`/products/${id}`);
-        console.log(res);
-        setProd(res);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(err);
-      }
-    };
     getProd();
   }, []);
 
@@ -98,18 +124,28 @@ const ProductView = () => {
                     <div>{prod.rating.count * 6} ventas</div>
                   </div>
                   <div className="font-semibold my-2">Stock disponible</div>
-                  <div>
-                    Cantidad: 1 unidad{" "}
-                    <span>({prod.rating.count} disponibles)</span>
-                  </div>
-                  <div className="w-full flex flex-col gap-2 items-center">
-                    <Button text="Comprar ahora" />
-                    <Button
-                      text="Agregar al carrito"
-                      bgColor={"bg-blue-200"}
-                      textColor="text-blue-500"
-                    />
-                  </div>
+                  <form onSubmit={addToCart}>
+                    <div>
+                      Cantidad:{" "}
+                      <input
+                        type="number"
+                        defaultValue={quantity}
+                        min="1"
+                        required
+                        className="w-7"
+                        onChange={handleChangeQuantity}
+                      />{" "}
+                      unidad <span>({prod.rating.count} disponibles)</span>
+                    </div>
+                    <div className="w-full flex flex-col gap-2 items-center">
+                      <Button text="Comprar ahora" />
+                      <Button
+                        text="Agregar al carrito"
+                        bgColor={"bg-blue-200"}
+                        textColor="text-blue-500"
+                      />
+                    </div>
+                  </form>
                   <div className="text-gray-400 text-base w-full">
                     <div className="flex flex-row ">
                       <TbArrowBack className="text-2xl self-start w-1/12" />

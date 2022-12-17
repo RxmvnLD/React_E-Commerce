@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import { TYPES } from "../actions/auth.actions";
 
 import { getToken } from "../helpers/axiosInstance";
 import user4 from "../helpers/user";
@@ -12,8 +13,8 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (getToken()) {
       dispatch({
-        type: "LOGGED_IN",
-        payload: user4,
+        type: TYPES.LOGGED_IN,
+        payload: { success: true, user: user4 },
       });
       console.log("logged in");
     }

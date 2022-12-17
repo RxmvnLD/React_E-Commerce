@@ -4,6 +4,7 @@ import { axiosPost } from "../helpers/axiosInstance";
 import AuthContext from "../context/AuthContext";
 import Button from "../components/Button";
 import user4 from "../helpers/user";
+import { TYPES } from "../actions/auth.actions";
 
 const Login = () => {
   const [userFocus, setUserFocus] = useState(false);
@@ -25,7 +26,7 @@ const Login = () => {
         password: password.value,
       });
       await dispatch({
-        type: "LOGGED_IN",
+        type: TYPES.LOGGED_IN,
         payload: {
           success: true,
           user: user4,
