@@ -3,6 +3,7 @@ import AuthContext from "../context/AuthContext";
 import user from "../assets/img/user.png";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import { TYPES } from "../actions/auth.actions";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -11,14 +12,13 @@ const Account = () => {
 
   const logout = () => {
     dispatch({
-      type: "LOGOUT",
+      type: TYPES.LOGOUT,
       payload: {
         success: false,
         user: null,
       },
     });
     localStorage.removeItem("token");
-    console.log("123123");
     navigate("/");
   };
 

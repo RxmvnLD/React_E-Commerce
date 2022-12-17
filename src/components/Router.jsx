@@ -27,6 +27,7 @@ const Router = () => {
         <Route path="/offers" element={<Category />} />
         <Route path="/category/:cat" element={<Category />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </BrowserRouter>
