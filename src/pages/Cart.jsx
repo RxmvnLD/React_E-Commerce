@@ -73,15 +73,17 @@ const Cart = () => {
                   Gratis
                 </span>
               </div>
-              <div className="w-11/12 mx-5 pb-10 border-b border-gray-300 flex flex-row items-center gap-28 justify-end">
-                <span className="font-medium text-2xl">Total con envío</span>{" "}
-                <span className="font-medium text-2xl">
+              <div className="w-11/12 mx-5 pb-10 border-b border-gray-300 flex flex-row items-center gap-24 lg:gap-28 justify-end">
+                <span className="font-medium text-lg lg:text-2xl">
+                  Total con envío
+                </span>{" "}
+                <span className="font-medium text-lg lg:text-2xl">
                   ${cartState.total.toFixed(2)}
                 </span>{" "}
               </div>
               <Link
                 to={state.success ? "/checkout" : "/login"}
-                className={`w-1/4 ${state.success ? "" : ""}`}
+                className={`lg:w-1/4 ${state.success ? "" : ""}`}
               >
                 <Button
                   text="Continuar compra"
