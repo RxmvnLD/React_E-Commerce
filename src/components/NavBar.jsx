@@ -11,6 +11,7 @@ import logo from "../assets/img/logo.png";
 
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import MobileMenu from "./MobileMenu";
 
 const NavBar = () => {
   const { state } = useContext(AuthContext);
@@ -18,13 +19,13 @@ const NavBar = () => {
 
   return (
     <div className="sticky top-0 z-50 w-full">
-      <nav className="flex flex-col py-2 text-sm bg-[#fff15a] md:flex md:px-10 shadow-xl w-full">
+      <nav className="flex flex-col py-2 text-sm bg-[#fff15a] md:flex md:px-10 shadow-xl w-full z-50">
         <div className="flex flex-row items-center sm:justify-center lg:justify-around gap-2 md:gap-7 lg:gap-0 lg:px-80">
           <Link to="/">
             <img src={logo} alt="logo" className="w-28 lg:w-40" />
           </Link>
 
-          <div className="bg-white flex flex-row items-center gap-2 p-2 lg:w-2/4">
+          <div className="bg-white flex flex-row items-center gap-2 p-2 w-5/12 lg:w-2/4">
             <BsSearch />
             <input
               type="text"
@@ -38,11 +39,12 @@ const NavBar = () => {
             }}
           >
             {" "}
-            <div className="text-3xl sm:text-2xl lg:hidden">
+            <div className="text-3xl sm:text-2xl m-0 lg:hidden">
               {isOpen ? <VscClose /> : <BiMenu />}
             </div>
           </button>
-          <Link>
+          <MobileMenu setIsOpen={setIsOpen} isOpen={isOpen} />
+          <Link to="/cart">
             <AiOutlineShoppingCart className="text-3xl sm:text-2xl lg:hidden" />
           </Link>
           <div className=" lg:flex lg:flex-row hidden text-lg m-0 gap-2">
