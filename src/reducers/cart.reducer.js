@@ -22,6 +22,12 @@ export function cartReducer(state, action) {
         total: state.total + action.payload,
       };
     }
+    case TYPES.CLEAR_CART: {
+      return {
+        cart: [],
+        total: 0,
+      };
+    }
     default:
       return state;
   }

@@ -18,7 +18,7 @@ const ProductView = () => {
   const [prod, setProd] = useState({}),
     [isLoading, setIsLoading] = useState(true),
     [quantity, setQuantity] = useState(1);
-  const { cartState, cartDispatch } = useContext(CartContext);
+  const { cartDispatch } = useContext(CartContext);
 
   const getProd = async () => {
     try {
@@ -32,7 +32,6 @@ const ProductView = () => {
 
   const handleChangeQuantity = (e) => {
     setQuantity(e.target.value);
-    console.log(quantity);
   };
 
   const addToCart = (event) => {
