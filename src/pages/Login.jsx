@@ -15,7 +15,6 @@ const Login = () => {
     errors: false,
     errorsList: [],
   });
-  console.log(loginError);
 
   const submitedForm = async (event) => {
     event.preventDefault();
@@ -32,7 +31,6 @@ const Login = () => {
           user: user4,
         },
       });
-      console.log(res);
       localStorage.setItem("token", res.token);
       navigate("/");
     } catch (error) {

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import CartContext from "../context/CartContext";
 import ItemInCart from "../components/ItemInCart";
@@ -9,10 +9,6 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const { cartState } = useContext(CartContext);
   const { state } = useContext(AuthContext);
-
-  useEffect(() => {
-    console.log(cartState);
-  }, []);
 
   return (
     <>
@@ -25,7 +21,7 @@ const Cart = () => {
             <span className="cursor-pointer">Guardados</span>
           </div>
 
-          {cartState.cart.length === 0 ? (
+          {cartState.cart?.length === 0 ? (
             <>
               <h2 className="font-medium">Tu carrito está vacío</h2>
               <p className="text-sm text-gray-500">
@@ -52,7 +48,7 @@ const Cart = () => {
                 </div>
               </div>
               <div className="w-full flex flex-col gap-10">
-                {cartState.cart.map((item) => {
+                {cartState.cart?.map((item) => {
                   return (
                     <ItemInCart
                       key={item.prod.id}
@@ -78,7 +74,7 @@ const Cart = () => {
                   Total con envío
                 </span>{" "}
                 <span className="font-medium text-lg lg:text-2xl">
-                  ${cartState.total.toFixed(2)}
+                  ${cartState.total?.toFixed(2)}
                 </span>{" "}
               </div>
               <Link
